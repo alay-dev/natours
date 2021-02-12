@@ -48,7 +48,6 @@ exports.singup = catchAsync(async (req, res) => {
   });
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -96,7 +95,6 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    console.log(token);
     return next(
       new AppError('You are not logged in! Please log in to get access.', 401)
     );
